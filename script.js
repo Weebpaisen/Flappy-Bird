@@ -13,4 +13,38 @@ let estado_jogo = {
 };
 let estadoatual = estado_jogo.MENU; //Define o estado do jogo após inicializar como menu
 
-let botao
+let botaojogo = {
+    x: boardWidth / 2 - 115.5 /2,
+    y: boardHeight / 2 - 64 / 2,
+    width: 115,
+    height: 64,
+};
+
+let logo = {
+    x: boardWidth / 2 - 300 / 2,
+    y: boardHeight / 4,
+    width: 300,
+    height: 100,
+}
+
+let imagemtitulo = new Image();
+imagemtitulo.src = "Imagens/logo.png"; 
+
+let gameover = new Image();
+gameover.src = "Imagens/gameover.png";
+
+let passaro = {
+    x: 50,
+    y: boardHeight / 2,
+    width: 40,
+    height: 30,
+
+}
+
+let velocidadeY = 0; 
+let velocidadeX = -2; //Velocidade do cenário, o valor negativo é para que ele se mova para a esquerda
+let gravidade = 0.5;
+let passaroY = boardHeight / 2; //Posição inicial do pássaro 
+let canoWidth = 50;
+let canoEspaço = 200;
+let canoarray = []; //Array para armazenar os canos e guardar pra possíveis colisões
