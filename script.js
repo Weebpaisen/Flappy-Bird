@@ -46,5 +46,47 @@ let velocidadeX = -2; //Velocidade do cenário, o valor negativo é para que ele
 let gravidade = 0.5;
 let passaroY = boardHeight / 2; //Posição inicial do pássaro 
 let canoWidth = 50;
-let canoEspaço = 200;
+let canoGap = 200;
 let canoarray = []; //Array para armazenar os canos e guardar pra possíveis colisões
+
+function colocarcano() //Função para posicionar os canos
+{
+    criarcano();
+}
+
+function criarcano(){
+   let alturaCanoMax  = boardHeight - canoGap - 50; //Altura máxima do cano
+   let alturaCanoSuperior = Math.floor(Math.random() * alturaCanoMax); // Math.floor arredonda o número para baixo, Math.random gera um número aleatório entre 0 e 1, que é multiplicado pela altura máxima do cano
+   let alturaCanoInferior = boardHeight - alturaCanoSuperior - canoGap; //Altura do cano inferior, subtração da altura do cano superior e o espaço entre os canos
+
+   let canoSuperior = {
+       x: boardWidth,
+       y: 0,
+       width: canoWidth,
+       height: alturaCanoSuperior,
+       passou: false //Variável para verificar se o pássaro já passou pelo cano
+       }
+   let canoInferior = {
+       x: boardWidth,
+       y: alturaCanoSuperior + canoGap,
+       width: canoWidth,
+       height: alturaCanoInferior,
+       passou: false
+       };
+    canoarray.push(canoSuperior, canoInferior); //Adiciona os canos ao array, o comando push adiciona um ou mais elementos ao final de um array e retorna o novo comprimento do array
+
+    window.onload = function() {
+        board = document.getElementById("jogo"); 
+        board.height = boardHeight; 
+        board.width = boardWidth;
+        context: board.getContext("2d"); //Define o contexto do canvas, que é onde os elementos serão desenhados
+        passaroimagem = new image(); 
+        passaroimagem.src = "Imagens/passaro.png"; 
+        canosuperiorimagem = new Image();
+        canosuperiorimagem.src = "Imagens/canosuperior.png";
+        canoinferiorimagem = new Image();
+        canoinferiorimagem.src = "Imagens/canoinferior.png";
+        botaoplay = new Image();
+        botaoplay.src = "Imagens/play.png"; 
+        }
+} 
