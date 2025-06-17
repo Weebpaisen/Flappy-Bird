@@ -75,7 +75,7 @@ function criarcano(){
        };
     canoarray.push(canoSuperior, canoInferior); //Adiciona os canos ao array, o comando push adiciona um ou mais elementos ao final de um array e retorna o novo comprimento do array
 
-    window.onload = function() {
+   window.onload = function() {
         board = document.getElementById("jogo"); 
         board.height = boardHeight; 
         board.width = boardWidth;
@@ -88,5 +88,18 @@ function criarcano(){
         canoinferiorimagem.src = "Imagens/canoinferior.png";
         botaoplay = new Image();
         botaoplay.src = "Imagens/play.png"; 
+        requestAnimationFrame(atualizar) //Faz o navegador chamar a função atualizar antes do próximo repaint, que é a atualização do canvas, o loop do jogo
         }
+   function atualizar() {
+        requestAnimationFrame(atualizar); 
+        context.clearRect(0, 0, boardWidth, boardHeight); //Limpa o canvas para desenhar novamente
+        
+        if (estado_jogo === estado_jogo.MENU) {
+            renderMenu();
+        } else if (estado_jogo === estado_jogo.JOGANDO) {
+            renderJogo();
+        } else if (estado_jogo === estado_jogo.GAMEOVER) {
+            renderGameOver();
+        }
+   }
 } 
